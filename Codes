@@ -1,0 +1,35 @@
+#created on google colab 
+# You can create qr code by entering the extension / url you want in the data section
+!pip install qrcode[pil]
+
+#main codes
+import qrcode
+
+# QR kod verisi 
+#QR code data
+data = "www.linkedin.com/in/ece-küçükdoğanlı"
+
+# QR kod oluşturma
+#QR code creation
+qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=4,
+)
+qr.add_data(data)
+qr.make(fit=True)
+
+# QR kodu bir resim dosyasına kaydetme
+# Save QR code to an image file
+img = qr.make_image(fill_color="black", back_color="white")
+img.save("linkedin_qrcode.png")
+print("QR kod oluşturuldu: linkedin_qrcode.png")
+
+#display output
+
+from IPython.display import Image
+
+# QR kodu görüntüleme
+# QR code display
+Image("linkedin_qrcode.png")
